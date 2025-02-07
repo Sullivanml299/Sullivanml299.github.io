@@ -11,6 +11,7 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
+            background-color: #1a1a1a;
         }
         #unity-canvas {
             width: 100%;
@@ -18,9 +19,63 @@
             position: fixed;
             background: #231F20;
         }
+        /* Unique Loading Wheel Styles */
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #fff;
+            font-family: sans-serif;
+        }
+        .spinner-unique {
+            width: 100px;
+            height: 100px;
+            border: 8px solid transparent;
+            border-radius: 50%;
+            position: relative;
+            animation: spinUnique 1.5s linear infinite;
+            background: conic-gradient(#ff5f6d, #ffc371, #ff5f6d);
+        }
+        .spinner-unique:before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            background: #1a1a1a;
+            border-radius: 50%;
+        }
+        @keyframes spinUnique {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loading-text {
+            margin-top: 20px;
+            font-size: 18px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: fadeInOut 2s ease-in-out infinite;
+        }
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
     </style>
 </head>
 <body>
+    <div id="loading-overlay">
+        <div class="spinner-unique"></div>
+        <div class="loading-text">Loading Stripped...</div>
+    </div>
     <canvas id="unity-canvas"></canvas>
     <script src="Build/Build.loader.js"></script>
     <script>
@@ -35,7 +90,21 @@
             streamingAssetsUrl: "StreamingAssets",
             companyName: "HeartLamp Games",
             productName: "Stripped",
-            productVersion: "0.2.3",
+            productVersion: "0.2.4",
+        }).then(function(unityInstance) {
+            var loadingOverlay = document.getElementById("loading-overlay");
+            if (loadingOverlay) {
+                loadingOverlay.style.display = "none";
+            }
+        }).catch(function(message) {
+            alert(message);
+        });
+    </script>
+    <script>
+        document.addEventListener("mouseleave", function() {
+            if (typeof unityInstance !== "undefined") {
+                unityInstance.SendMessage("NetworkManager", "ShowCursor");
+            }
         });
     </script>
 </body>
