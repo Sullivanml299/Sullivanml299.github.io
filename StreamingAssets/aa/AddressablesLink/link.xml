@@ -2,6 +2,8 @@
   <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="SpriteSet" preserve="all" />
     <type fullname="SpriteSetCollection" preserve="all" />
+    <type fullname="Sticker.StickerSpriteIndex" preserve="all" />
+    <type fullname="Sticker.StickerSpriteIndex/Entry" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
     <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
