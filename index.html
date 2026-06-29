@@ -77,20 +77,20 @@
         <div class="loading-text">Loading Stripped...</div>
     </div>
     <canvas id="unity-canvas"></canvas>
-    <script src="Build/WebGL.loader.js"></script>
+    <script src="Build/Build.loader.js"></script>
     <script>
         var canvas = document.querySelector("#unity-canvas");
         document.body.style.textAlign = "left";
 
         createUnityInstance(canvas, {
             arguments: [],
-            dataUrl: "Build/WebGL.data.unityweb?0_2_4_4",
-            frameworkUrl: "Build/WebGL.framework.js.unityweb?0_2_4_4",
-            codeUrl: "Build/WebGL.wasm.unityweb?0_2_4_4",
+            dataUrl: "Build/Build.data.unityweb?0_6_0",
+            frameworkUrl: "Build/Build.framework.js.unityweb?0_6_0",
+            codeUrl: "Build/Build.wasm.unityweb?0_6_0",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "HeartLamp Games",
             productName: "Stripped",
-            productVersion: "0.2.4.4",
+            productVersion: "0.6.0",
         }).then(function(unityInstance) {
             var loadingOverlay = document.getElementById("loading-overlay");
             if (loadingOverlay) {
